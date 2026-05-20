@@ -38,34 +38,11 @@
 
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Iniciar Sesión</button>
             </form>
-
-            <div style="margin-top: 20px; font-size: 12px; color: var(--text-muted); text-align: left; background: var(--bg-color); padding: 10px; border-radius: 4px;">
-                <strong>Demo Access:</strong><br>
-                Admin: admin@specialisterne.com<br>
-                Supervisor: supervisor@specialisterne.com<br>
-                Consultor: consultor@specialisterne.com<br>
-                <em>(Cualquier contraseña funciona)</em>
-            </div>
         </div>
     </div>
 
     <script src="js/app.js"></script>
-    <script>
-        function handleLogin(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value.toLowerCase();
-
-            if (email.includes('admin')) {
-                window.location.href = 'pages/admin/index.html';
-            } else if (email.includes('supervisor')) {
-                window.location.href = 'pages/supervisor/index.html';
-            } else if (email.includes('consultor')) {
-                window.location.href = 'pages/consultor/index.html';
-            } else {
-                document.getElementById('loginError').style.display = 'block';
-            }
-        }
-    </script>
+    <script src="js/login.js"></script>
 </body>
 
 </html>

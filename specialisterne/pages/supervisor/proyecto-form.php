@@ -1,8 +1,11 @@
 <?php
 session_start();
 
+// Si se sube a un host, darle el valor ""
+$path = "/specialisterne";
+
 if (!isset($_SESSION["user"])) {
-    header("Location: /index.php");
+    header("Location: {$path}/index.php");
     exit;
 }
 

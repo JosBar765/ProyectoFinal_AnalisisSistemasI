@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const tabId = tab.getAttribute('data-tab');
             const tabGroup = tab.parentElement;
             const contentGroup = tabGroup.nextElementSibling;
-            
+
             // Remover active de los tabs de este grupo
             tabGroup.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             // Añadir active al clickeado
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             showToast('Acción realizada con éxito (Simulación)');
-            
+
             // Opcional: limpiar formulario después de un rato o redirigir
             setTimeout(() => {
                 const redirect = form.getAttribute('data-redirect');
@@ -67,10 +67,10 @@ function showToast(message, type = 'success') {
 
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
-    
+
     let icon = 'check-circle';
-    if(type === 'error') icon = 'alert-circle';
-    if(type === 'warning') icon = 'alert-triangle';
+    if (type === 'error') icon = 'alert-circle';
+    if (type === 'warning') icon = 'alert-triangle';
 
     toast.innerHTML = `
         <i data-lucide="${icon}" class="${type === 'success' ? 'text-success' : ''}"></i>
@@ -78,7 +78,7 @@ function showToast(message, type = 'success') {
     `;
 
     toastContainer.appendChild(toast);
-    
+
     if (typeof lucide !== 'undefined') {
         lucide.createIcons({ root: toast });
     }

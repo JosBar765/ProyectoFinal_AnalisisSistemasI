@@ -18,7 +18,7 @@
         <i data-lucide="lock" style="width: 48px; height: 48px; color: var(--text-muted); margin-bottom: 15px;"></i>
         <h1 style="font-size: 20px; margin-bottom: 10px;">Acceso Denegado</h1>
         <p style="color: var(--text-muted); margin-bottom: 25px;">No tienes permisos para acceder a esta sección.</p>
-        <a href="index.html" class="btn btn-primary">Volver al inicio</a>
+        <!-- <a href="index.php" class="btn btn-primary">Volver al inicio</a> -->
     </div>
     <script src="js/app.js"></script>
 </body>
