@@ -1,5 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user"])) {
+    header("Location: /index.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +23,14 @@
             border: 2px solid transparent;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
+
         .consultor-card:hover {
             border-color: var(--primary-color);
             box-shadow: 0 8px 16px -4px rgba(74, 111, 165, 0.15);
         }
     </style>
 </head>
+
 <body>
     <div class="layout">
         <!-- Sidebar para Consultor: Más minimalista -->
@@ -60,13 +73,15 @@
                             <div class="d-flex gap-3 mb-4" style="font-size: 13px; color: var(--text-muted);">
                                 <span class="d-flex align-center gap-2"><i data-lucide="calendar" size="16"></i> Fin: 30 Jun 2026</span>
                             </div>
-                            
+
                             <div style="background-color: var(--bg-color); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                                 <div class="d-flex justify-between align-center mb-2">
                                     <span style="font-weight: 500;">Tu progreso</span>
                                     <span style="font-weight: 600; color: var(--primary-color);">6 / 15 Casos</span>
                                 </div>
-                                <div class="progress-container mb-1"><div class="progress-bar" style="width: 40%;"></div></div>
+                                <div class="progress-container mb-1">
+                                    <div class="progress-bar" style="width: 40%;"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="text-center">
@@ -84,13 +99,15 @@
                             <div class="d-flex gap-3 mb-4" style="font-size: 13px; color: var(--text-muted);">
                                 <span class="d-flex align-center gap-2"><i data-lucide="calendar" size="16"></i> Fin: 15 Ago 2026</span>
                             </div>
-                            
+
                             <div style="background-color: var(--bg-color); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                                 <div class="d-flex justify-between align-center mb-2">
                                     <span style="font-weight: 500;">Tu progreso</span>
                                     <span style="font-weight: 600; color: var(--primary-color);">10 / 10 Casos</span>
                                 </div>
-                                <div class="progress-container mb-1"><div class="progress-bar" style="width: 100%;"></div></div>
+                                <div class="progress-container mb-1">
+                                    <div class="progress-bar" style="width: 100%;"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="text-center">
@@ -104,4 +121,5 @@
     </div>
     <script src="../../js/app.js"></script>
 </body>
+
 </html>

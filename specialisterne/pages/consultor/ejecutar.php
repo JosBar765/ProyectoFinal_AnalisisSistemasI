@@ -1,5 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user"])) {
+    header("Location: /index.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +19,7 @@
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
     <div class="layout">
         <aside class="sidebar">
@@ -43,11 +55,11 @@
                 </div>
 
                 <div class="dashboard-grid" style="grid-template-columns: 3fr 2fr;">
-                    
+
                     <!-- Información del Caso (Solo lectura) -->
                     <div class="card" style="border-top: 4px solid var(--primary-color);">
                         <h2 class="card-title" style="font-size: 20px; margin-bottom: 20px;">Validar generación de factura B</h2>
-                        
+
                         <div style="margin-bottom: 20px;">
                             <h3 style="font-size: 14px; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase;">Instrucciones Paso a Paso:</h3>
                             <div style="background: var(--bg-color); padding: 15px; border-radius: 8px; font-size: 15px; line-height: 1.6; white-space: pre-line;">
@@ -74,7 +86,7 @@
                     <!-- Formulario de Ejecución -->
                     <div class="card" style="background: #F8F9FB; border: 1px solid var(--border-color);">
                         <h2 class="card-title" style="margin-bottom: 20px;">Registrar Resultado</h2>
-                        
+
                         <form action="casos.html" data-redirect="casos.html" id="ejecucionForm">
                             <div class="form-group">
                                 <label class="form-label" style="font-size: 16px;">¿El resultado fue el esperado?</label>
@@ -90,7 +102,7 @@
                                 <label class="form-label">Observaciones (Opcional si fue aprobado)</label>
                                 <textarea class="form-control" placeholder="Escribe aquí si notaste algo raro o por qué falló..."></textarea>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label class="form-label">Fecha y Hora de Ejecución</label>
                                 <input type="text" class="form-control" value="18 May 2026, 14:35" readonly style="background: #e9ecef; cursor: not-allowed;">
@@ -115,14 +127,14 @@
             </div>
         </main>
     </div>
-    
+
     <script src="../../js/app.js"></script>
     <script>
         function handleResultadoChange() {
             const select = document.getElementById('resultadoSelect');
             const errorBtn = document.getElementById('errorReportBtn');
             const submitBtns = document.getElementById('submitButtons');
-            
+
             if (select.value === 'fallido') {
                 errorBtn.style.display = 'block';
                 submitBtns.style.display = 'none';
@@ -133,4 +145,5 @@
         }
     </script>
 </body>
+
 </html>

@@ -1,5 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user"])) {
+    header("Location: /index.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,11 +30,13 @@
             margin-bottom: 15px;
             transition: border-color 0.2s;
         }
+
         .caso-card:hover {
             border-color: var(--primary-color);
         }
     </style>
 </head>
+
 <body>
     <div class="layout">
         <aside class="sidebar">
@@ -67,7 +80,7 @@
                     <div class="tab-content-container">
                         <!-- Casos Pendientes -->
                         <div id="pendientes" class="tab-content active" data-tab-group="estado">
-                            
+
                             <div class="caso-card">
                                 <div>
                                     <div class="d-flex align-center gap-3 mb-2">
@@ -100,7 +113,7 @@
 
                         <!-- Casos Completados -->
                         <div id="completados" class="tab-content" data-tab-group="estado">
-                            
+
                             <div class="caso-card" style="background: var(--bg-color);">
                                 <div>
                                     <div class="d-flex align-center gap-3 mb-2">
@@ -115,7 +128,7 @@
                                     <span style="color: var(--text-muted); font-size: 13px;">Ejecutado: 15 May 2026</span>
                                 </div>
                             </div>
-                            
+
                             <div class="caso-card" style="background: var(--bg-color);">
                                 <div>
                                     <div class="d-flex align-center gap-3 mb-2">
@@ -140,4 +153,5 @@
     </div>
     <script src="../../js/app.js"></script>
 </body>
+
 </html>

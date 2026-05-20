@@ -1,5 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user"])) {
+    header("Location: /index.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +19,7 @@
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
     <div class="layout">
         <!-- Sidebar -->
@@ -61,7 +73,9 @@
                                 <span class="d-flex align-center gap-2"><i data-lucide="calendar" size="14"></i> Inicio: 01 May 2026</span>
                                 <span class="d-flex align-center gap-2"><i data-lucide="calendar" size="14"></i> Fin: 30 Jun 2026</span>
                             </div>
-                            <div class="progress-container mb-1"><div class="progress-bar" style="width: 42%;"></div></div>
+                            <div class="progress-container mb-1">
+                                <div class="progress-bar" style="width: 42%;"></div>
+                            </div>
                             <span style="font-size: 12px; color: var(--text-muted);">Avance: 42%</span>
                         </div>
                         <div class="mt-4 text-center">
@@ -83,7 +97,9 @@
                                 <span class="d-flex align-center gap-2"><i data-lucide="calendar" size="14"></i> Inicio: 15 Mar 2026</span>
                                 <span class="d-flex align-center gap-2"><i data-lucide="calendar" size="14"></i> Fin: 15 Jul 2026</span>
                             </div>
-                            <div class="progress-container mb-1"><div class="progress-bar" style="width: 75%; background-color: var(--warning-color);"></div></div>
+                            <div class="progress-container mb-1">
+                                <div class="progress-bar" style="width: 75%; background-color: var(--warning-color);"></div>
+                            </div>
                             <span style="font-size: 12px; color: var(--text-muted);">Avance: 75%</span>
                         </div>
                         <div class="mt-4 text-center">
@@ -105,7 +121,9 @@
                                 <span class="d-flex align-center gap-2"><i data-lucide="calendar" size="14"></i> Inicio: 01 Ene 2026</span>
                                 <span class="d-flex align-center gap-2"><i data-lucide="calendar" size="14"></i> Fin: 30 Abr 2026</span>
                             </div>
-                            <div class="progress-container mb-1"><div class="progress-bar" style="width: 100%;"></div></div>
+                            <div class="progress-container mb-1">
+                                <div class="progress-bar" style="width: 100%;"></div>
+                            </div>
                             <span style="font-size: 12px; color: var(--text-muted);">Avance: 100%</span>
                         </div>
                         <div class="mt-4 text-center">
@@ -119,4 +137,5 @@
     </div>
     <script src="../../js/app.js"></script>
 </body>
+
 </html>

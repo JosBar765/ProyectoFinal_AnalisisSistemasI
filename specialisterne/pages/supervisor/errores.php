@@ -1,5 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user"])) {
+    header("Location: /index.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +19,7 @@
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
     <div class="layout">
         <aside class="sidebar">
@@ -57,11 +69,11 @@
                         </div>
                         <button class="btn btn-secondary" onclick="document.getElementById('errorDetail').style.display='none'"><i data-lucide="x" size="16"></i></button>
                     </div>
-                    
+
                     <div style="background: var(--bg-color); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                         <h3 style="font-size: 16px; margin-bottom: 10px;">Cálculo de IVA incorrecto en facturas B</h3>
                         <p style="font-size: 14px; margin-bottom: 15px;">Al generar una factura tipo B para un cliente consumidor final, el sistema calcula el IVA al 10.5% en lugar de tomar el precio final o calcularlo al 21% según las reglas de negocio.</p>
-                        
+
                         <div class="dashboard-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 0;">
                             <div>
                                 <strong style="font-size: 12px; color: var(--text-muted); display: block;">Reportado por:</strong>
@@ -73,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <h3 style="font-size: 14px; margin-bottom: 10px;">Evidencias (Imágenes adjuntas)</h3>
                     <div style="display: flex; gap: 15px;">
                         <!-- Mockup de imagen -->
@@ -150,7 +162,8 @@
             </div>
         </main>
     </div>
-    
+
     <script src="../../js/app.js"></script>
 </body>
+
 </html>

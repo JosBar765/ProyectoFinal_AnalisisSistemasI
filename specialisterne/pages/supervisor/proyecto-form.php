@@ -1,5 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user"])) {
+    header("Location: /index.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +19,7 @@
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
     <div class="layout">
         <aside class="sidebar">
@@ -49,12 +61,12 @@
                             <label class="form-label">Nombre del Proyecto</label>
                             <input type="text" class="form-control" required placeholder="Ej. Sistema de Inventario V2">
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="form-label">Descripción</label>
                             <textarea class="form-control" required placeholder="Descripción general de lo que se va a probar..."></textarea>
                         </div>
-                        
+
                         <div class="dashboard-grid">
                             <div class="form-group">
                                 <label class="form-label">Fecha de Inicio</label>
@@ -78,7 +90,7 @@
                                 <h3>Fases del Proyecto</h3>
                                 <button type="button" class="btn btn-secondary" onclick="agregarFase()"><i data-lucide="plus" size="16"></i> Agregar Fase</button>
                             </div>
-                            
+
                             <div id="fasesContainer" style="display: flex; flex-direction: column; gap: 15px;">
                                 <!-- Fase 1 (Base) -->
                                 <div class="card" style="background-color: var(--bg-color); margin-bottom: 0;">
@@ -104,10 +116,11 @@
             </div>
         </main>
     </div>
-    
+
     <script src="../../js/app.js"></script>
     <script>
         let contadorFases = 1;
+
         function agregarFase() {
             contadorFases++;
             const container = document.getElementById('fasesContainer');
@@ -125,8 +138,11 @@
                 </div>
             `;
             container.appendChild(faseDiv);
-            lucide.createIcons({ root: faseDiv });
+            lucide.createIcons({
+                root: faseDiv
+            });
         }
     </script>
 </body>
+
 </html>

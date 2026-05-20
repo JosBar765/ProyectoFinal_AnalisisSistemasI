@@ -1,5 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user"])) {
+    header("Location: /index.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +19,7 @@
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
     <div class="layout">
         <aside class="sidebar">
@@ -43,7 +55,7 @@
                 </div>
 
                 <div class="card" style="max-width: 800px; margin: 0 auto; border-top: 4px solid var(--error-color);">
-                    
+
                     <div style="background: var(--bg-color); padding: 15px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid var(--text-muted);">
                         <span style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Reportando fallo para el caso:</span>
                         <h3 style="font-size: 16px; margin-top: 5px;">CP-015: Validar generación de factura B</h3>
@@ -54,12 +66,12 @@
                             <label class="form-label" style="font-size: 16px; font-weight: 600;">¿Qué ocurrió? (Título corto)</label>
                             <input type="text" class="form-control" placeholder="Ej. El botón no hace nada al hacer clic" style="font-size: 16px; padding: 12px;" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="form-label">Descripción detallada</label>
                             <textarea class="form-control" placeholder="Explica exactamente qué estabas haciendo y qué falló..." style="min-height: 120px;" required></textarea>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="form-label">Severidad del error</label>
                             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
@@ -98,7 +110,7 @@
             </div>
         </main>
     </div>
-    
+
     <script src="../../js/app.js"></script>
     <script>
         // Simple script to highlight selected severity
@@ -108,7 +120,7 @@
                     r.parentElement.style.borderColor = 'var(--border-color)';
                     r.parentElement.style.backgroundColor = '#fff';
                 });
-                if(e.target.checked) {
+                if (e.target.checked) {
                     e.target.parentElement.style.borderColor = 'var(--primary-color)';
                     e.target.parentElement.style.backgroundColor = 'rgba(74, 111, 165, 0.05)';
                 }
@@ -116,4 +128,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -1,5 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user"])) {
+    header("Location: /index.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +19,7 @@
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
     <div class="layout">
         <!-- Sidebar -->
@@ -115,7 +127,9 @@
                                         <td>Módulo Login</td>
                                         <td>
                                             <div style="display: flex; align-items: center; gap: 10px;">
-                                                <div class="progress-container" style="flex: 1; margin: 0;"><div class="progress-bar" style="width: 100%;"></div></div>
+                                                <div class="progress-container" style="flex: 1; margin: 0;">
+                                                    <div class="progress-bar" style="width: 100%;"></div>
+                                                </div>
                                                 <span style="font-size: 12px;">100%</span>
                                             </div>
                                         </td>
@@ -125,7 +139,9 @@
                                         <td>Módulo Facturación</td>
                                         <td>
                                             <div style="display: flex; align-items: center; gap: 10px;">
-                                                <div class="progress-container" style="flex: 1; margin: 0;"><div class="progress-bar" style="width: 45%; background-color: var(--primary-color);"></div></div>
+                                                <div class="progress-container" style="flex: 1; margin: 0;">
+                                                    <div class="progress-bar" style="width: 45%; background-color: var(--primary-color);"></div>
+                                                </div>
                                                 <span style="font-size: 12px;">45%</span>
                                             </div>
                                         </td>
@@ -135,7 +151,9 @@
                                         <td>Módulo Reportes</td>
                                         <td>
                                             <div style="display: flex; align-items: center; gap: 10px;">
-                                                <div class="progress-container" style="flex: 1; margin: 0;"><div class="progress-bar" style="width: 0%; background-color: var(--border-color);"></div></div>
+                                                <div class="progress-container" style="flex: 1; margin: 0;">
+                                                    <div class="progress-bar" style="width: 0%; background-color: var(--border-color);"></div>
+                                                </div>
                                                 <span style="font-size: 12px;">0%</span>
                                             </div>
                                         </td>
@@ -178,4 +196,5 @@
     </div>
     <script src="../../js/app.js"></script>
 </body>
+
 </html>

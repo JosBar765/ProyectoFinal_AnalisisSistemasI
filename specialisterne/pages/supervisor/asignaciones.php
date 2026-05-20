@@ -1,5 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user"])) {
+    header("Location: /index.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +19,7 @@
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
     <div class="layout">
         <aside class="sidebar">
@@ -49,14 +61,14 @@
                 </div>
 
                 <div class="dashboard-grid" style="grid-template-columns: 1fr 1fr;">
-                    
+
                     <!-- Consultores Disponibles -->
                     <div class="card">
                         <div class="card-header">
                             <h2 class="card-title">Consultores Disponibles</h2>
                         </div>
                         <div style="display: flex; flex-direction: column; gap: 15px;">
-                            
+
                             <div class="card" style="background: var(--bg-color); box-shadow: none; margin: 0;">
                                 <div class="d-flex justify-between align-center">
                                     <div>
@@ -70,7 +82,7 @@
                                     <button class="btn btn-primary" onclick="showToast('Consultor asignado al proyecto')">Asignar <i data-lucide="arrow-right" size="16"></i></button>
                                 </div>
                             </div>
-                            
+
                             <div class="card" style="background: var(--bg-color); box-shadow: none; margin: 0;">
                                 <div class="d-flex justify-between align-center">
                                     <div>
@@ -93,9 +105,9 @@
                             <h2 class="card-title">Asignados al Proyecto Actual</h2>
                             <span class="badge badge-success">1 Asignado</span>
                         </div>
-                        
+
                         <div style="display: flex; flex-direction: column; gap: 15px;">
-                            
+
                             <div class="card" style="background: white; border: 1px solid var(--border-color); box-shadow: none; margin: 0;">
                                 <div class="d-flex justify-between align-center">
                                     <div class="d-flex align-center gap-3">
@@ -109,7 +121,7 @@
                                     <button class="btn btn-danger" onclick="showToast('Consultor removido del proyecto', 'warning')"><i data-lucide="user-minus" size="16"></i> Remover</button>
                                 </div>
                             </div>
-                            
+
                             <div style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 13px; font-style: italic;">
                                 Arrastre o use el botón asignar para incluir más consultores.
                             </div>
@@ -122,7 +134,8 @@
             </div>
         </main>
     </div>
-    
+
     <script src="../../js/app.js"></script>
 </body>
+
 </html>
