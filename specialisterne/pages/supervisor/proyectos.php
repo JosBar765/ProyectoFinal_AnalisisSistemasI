@@ -9,7 +9,7 @@ if (!isset($_SESSION["user"])) {
     exit;
 }
 
-if ($_SESSION["id_rol"] != 2) {
+if ($_SESSION["user"]["id_rol"] != 2) {
     header("Location: {$path}/403.php");
     exit;
 }
@@ -36,12 +36,12 @@ if ($_SESSION["id_rol"] != 2) {
                 <h2>Specialisterne</h2>
             </div>
             <nav class="sidebar-nav">
-                <a href="index.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
-                <a href="proyectos.html" class="active"><i data-lucide="folder-kanban"></i> Proyectos</a>
-                <a href="manuales.html"><i data-lucide="book-open"></i> Manuales</a>
-                <a href="casos.html"><i data-lucide="list-checks"></i> Casos de Prueba</a>
-                <a href="asignaciones.html"><i data-lucide="users"></i> Asignaciones</a>
-                <a href="errores.html"><i data-lucide="bug"></i> Errores</a>
+                <a href="index.php"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                <a href="proyectos.php" class="active"><i data-lucide="folder-kanban"></i> Proyectos</a>
+                <a href="manuales.php"><i data-lucide="book-open"></i> Manuales</a>
+                <a href="casos.php"><i data-lucide="list-checks"></i> Casos de Prueba</a>
+                <a href="asignaciones.php"><i data-lucide="users"></i> Asignaciones</a>
+                <a href="errores.php"><i data-lucide="bug"></i> Errores</a>
             </nav>
         </aside>
 
@@ -53,7 +53,7 @@ if ($_SESSION["id_rol"] != 2) {
                     <span class="role-badge" style="background-color: rgba(232, 168, 56, 0.15); color: var(--warning-color);">Supervisor</span>
                     <span>Laura Martínez</span>
                     <div class="avatar" style="background-color: var(--warning-color);">L</div>
-                    <a href="../../index.html" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
+                    <a id="logoutBtn" href="../../index.php" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
                 </div>
             </header>
 
@@ -63,7 +63,7 @@ if ($_SESSION["id_rol"] != 2) {
                         <div class="breadcrumb">Supervisor / Proyectos</div>
                         <h1>Lista de Proyectos</h1>
                     </div>
-                    <a href="proyecto-form.html" class="btn btn-primary"><i data-lucide="plus"></i> Nuevo Proyecto</a>
+                    <a href="proyecto-form.php" class="btn btn-primary"><i data-lucide="plus"></i> Nuevo Proyecto</a>
                 </div>
 
                 <div class="dashboard-grid">
@@ -87,7 +87,7 @@ if ($_SESSION["id_rol"] != 2) {
                             <span style="font-size: 12px; color: var(--text-muted);">Avance: 42%</span>
                         </div>
                         <div class="mt-4 text-center">
-                            <a href="index.html" class="btn btn-secondary" style="width: 100%;">Ver Detalles</a>
+                            <a href="index.php" class="btn btn-secondary" style="width: 100%;">Ver Detalles</a>
                         </div>
                     </div>
 

@@ -1,6 +1,3 @@
-// Si se sube a un host, darle el valor ""
-let base = "/specialisterne";
-
 async function handleLogin(event) {
     event.preventDefault();
 
@@ -26,7 +23,7 @@ async function handleLogin(event) {
         const data = await response.json();
 
         if (data.success) {
-            console.log("Login exitoso");
+            console.log("Login exitoso: " + data.user.rol);
 
             if (data.user.id_rol === 1)
                 base += "/pages/admin";

@@ -9,7 +9,7 @@ if (!isset($_SESSION["user"])) {
     exit;
 }
 
-if ($_SESSION["id_rol"] != 1) {
+if ($_SESSION["user"]["id_rol"] != 1) {
     header("Location: {$path}/403.php");
     exit;
 }
@@ -51,7 +51,7 @@ if ($_SESSION["id_rol"] != 1) {
                     <span class="role-badge">Administrador</span>
                     <span>Admin User</span>
                     <div class="avatar">A</div>
-                    <a href="../../index.php" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
+                    <a id="logoutBtn" href="../../index.php" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
                 </div>
             </header>
 

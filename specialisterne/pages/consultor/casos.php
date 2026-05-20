@@ -9,7 +9,7 @@ if (!isset($_SESSION["user"])) {
     exit;
 }
 
-if ($_SESSION["id_rol"] != 3) {
+if ($_SESSION["user"]["id_rol"] != 3) {
     header("Location: {$path}/403.php");
     exit;
 }
@@ -67,7 +67,7 @@ if ($_SESSION["id_rol"] != 3) {
                     <span class="role-badge" style="background-color: rgba(74, 111, 165, 0.15); color: var(--primary-color);">Consultor</span>
                     <span>María García</span>
                     <div class="avatar" style="background-color: var(--primary-color);">M</div>
-                    <a href="../../index.html" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
+                    <a id="logoutBtn" href="../../index.html" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
                 </div>
             </header>
 

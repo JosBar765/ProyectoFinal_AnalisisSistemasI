@@ -1,3 +1,8 @@
+// Si se sube a un host, darle el valor ""
+let base = "/specialisterne";
+
+const logoutBtn = document.getElementById("logoutBtn");
+
 document.addEventListener('DOMContentLoaded', () => {
     // Inicializar iconos Lucide
     if (typeof lucide !== 'undefined') {
@@ -95,4 +100,17 @@ function showToast(message, type = 'success') {
             toast.remove();
         }, 300);
     }, 3000);
+}
+
+// Función para cerrar la sesión
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", async (event) => {
+        try {
+            event.preventDefault();
+            await fetch("../../php/logout.php");
+            window.location.href = `${base}/index.php`;
+        } catch (error) {
+            console.error(error);
+        }
+    });
 }
