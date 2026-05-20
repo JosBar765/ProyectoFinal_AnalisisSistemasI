@@ -9,6 +9,11 @@ if (!isset($_SESSION["user"])) {
     exit;
 }
 
+if ($_SESSION["id_rol"] != 1) {
+    header("Location: {$path}/403.php");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,9 +36,9 @@ if (!isset($_SESSION["user"])) {
                 <h2>Specialisterne</h2>
             </div>
             <nav class="sidebar-nav">
-                <a href="index.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
-                <a href="usuarios.html" class="active"><i data-lucide="users"></i> Usuarios</a>
-                <a href="consultores.html"><i data-lucide="user-check"></i> Consultores</a>
+                <a href="index.php"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                <a href="usuarios.php" class="active"><i data-lucide="users"></i> Usuarios</a>
+                <a href="consultores.php"><i data-lucide="user-check"></i> Consultores</a>
             </nav>
         </aside>
 
@@ -45,7 +50,7 @@ if (!isset($_SESSION["user"])) {
                     <span class="role-badge">Administrador</span>
                     <span>Admin User</span>
                     <div class="avatar">A</div>
-                    <a href="../../index.html" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
+                    <a href="../../index.php" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
                 </div>
             </header>
 

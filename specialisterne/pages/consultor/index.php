@@ -9,6 +9,11 @@ if (!isset($_SESSION["user"])) {
     exit;
 }
 
+if ($_SESSION["id_rol"] != 3) {
+    header("Location: {$path}/403.php");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
