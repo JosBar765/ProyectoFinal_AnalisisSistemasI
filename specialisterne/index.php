@@ -1,3 +1,33 @@
+<?php
+session_start();
+
+// Si se sube a un host, darle el valor ""
+$path = "/specialisterne";
+
+if (isset($_SESSION["user"])) {
+    $rol = $_SESSION["user"]["id_rol"];
+
+    switch ($rol) {
+        case 1:
+            header("Location: {$path}/pages/admin/index.php");
+            break;
+
+        case 2:
+            header("Location: {$path}/pages/supervisor/index.php");
+            break;
+
+        case 3:
+            header("Location: {$path}/pages/consultor/index.php");
+            break;
+
+        default:
+            session_destroy();
+            break;
+    }
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 

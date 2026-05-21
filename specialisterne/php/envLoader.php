@@ -1,6 +1,6 @@
 <?php
 
-define('ENV_PATH', '../keys.env');
+define('ENV_PATH', __DIR__ . '/../keys.env');
 
 function loadEnv($path)
 {
