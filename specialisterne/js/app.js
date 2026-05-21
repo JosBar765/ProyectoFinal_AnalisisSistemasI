@@ -39,26 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    // Simulador de Formularios
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        // Ignorar el form de login para que redirija
-        if (form.id === 'loginForm') return;
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            showToast('Acción realizada con éxito (Simulación)');
-
-            // Opcional: limpiar formulario después de un rato o redirigir
-            setTimeout(() => {
-                const redirect = form.getAttribute('data-redirect');
-                if (redirect) {
-                    window.location.href = redirect;
-                }
-            }, 1500);
-        });
-    });
 });
 
 // Función para mostrar Toast (notificación)

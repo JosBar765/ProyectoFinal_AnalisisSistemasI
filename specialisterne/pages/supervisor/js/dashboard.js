@@ -18,7 +18,9 @@ const erroresRecientesContainer = document.getElementById("erroresRecientesConta
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    await cargarProyectos();
+    const idFromURL = getProyectoFromURL();
+
+    await cargarProyectos(idFromURL);
 
     proyectoSelect.addEventListener("change", async () => {
 
@@ -30,37 +32,33 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 });
 
-async function cargarProyectos() {
+async function cargarProyectos(selectedId = null) {
 
-    try {
+    const response = await fetch(`${supervisorBase}/php/proyectos/getProyectos.php`);
+    const data = await response.json();
 
-        const response = await fetch(`${supervisorBase}/php/proyectos/getProyectos.php`);
-        const data = await response.json();
+    proyectoSelect.innerHTML = "";
 
-        proyectoSelect.innerHTML = "";
+    data.forEach(proyecto => {
+        proyectoSelect.innerHTML += `
+            <option value="${proyecto.id}">
+                ${proyecto.nombre}
+            </option>
+        `;
+    });
 
-        data.forEach(proyecto => {
+    // decidir qué proyecto seleccionar
+    let idFinal = selectedId;
 
-            proyectoSelect.innerHTML += `
-                <option value="${proyecto.id}">
-                    ${proyecto.nombre}
-                </option>
-            `;
-
-        });
-
-        if (data.length > 0) {
-
-            await cargarDashboard(data[0].id);
-
-        }
-
-    } catch (error) {
-
-        console.error(error);
-
+    if (!idFinal && data.length > 0) {
+        idFinal = data[0].id;
     }
 
+    // setear valor visual del select
+    proyectoSelect.value = idFinal;
+
+    // cargar dashboard inicial
+    await cargarDashboard(idFinal);
 }
 
 async function cargarDashboard(idProyecto) {
@@ -283,4 +281,9 @@ async function cargarErrores(idProyecto) {
 
     }
 
+}
+
+function getProyectoFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("id_proyecto");
 }
