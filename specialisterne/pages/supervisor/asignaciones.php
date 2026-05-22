@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 require_once '../../php/path.php';
 
 if (!isset($_SESSION["user"])) {
