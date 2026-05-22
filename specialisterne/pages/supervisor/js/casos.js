@@ -268,6 +268,10 @@ function renderizarCasos(casos) {
                     badgeClass = "badge-success";
                     break;
 
+                case "Pendiente":
+                    badgeClass = "badge-warning";
+                    break;
+
                 case "Fallido":
                     badgeClass = "badge-error";
                     break;
