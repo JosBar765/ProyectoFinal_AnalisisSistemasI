@@ -1,3 +1,7 @@
+CREATE DATABASE `Specialisterne`;
+
+USE `Specialisterne`;
+
 CREATE TABLE `Rol` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `nombre` varchar(255)
