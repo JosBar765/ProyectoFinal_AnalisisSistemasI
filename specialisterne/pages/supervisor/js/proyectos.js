@@ -3,9 +3,7 @@ const API_BASE = `${base}/pages/supervisor/php/proyectos`;
 const proyectosContainer = document.getElementById("proyectosContainer");
 
 document.addEventListener("DOMContentLoaded", async () => {
-
     await cargarProyectos();
-
 });
 
 async function cargarProyectos() {
@@ -221,26 +219,40 @@ async function cargarProyectos() {
 
                     </div>
 
-                    <div
-                        class="mt-4 text-center">
+                    <div class="text-center"
+                        style = "
+                            display: flex;
+                            flex-direction: row;
+                            gap: 10px;
+                        "
+                    >
 
-                        <a
-                            href="index.php"
-
+                        <a href="index.php" class="btn btn-secondary" style="width: 100%;"
                             onclick="
                                 localStorage.setItem(
                                     'proyectoActivo',
                                     ${proyecto.id}
                                 );
                             "
-
-                            class="btn btn-secondary"
-                            style="width: 100%;">
-
+                        >
                             Ver Detalles
-
                         </a>
 
+                        <button
+                            class="btn btn-danger btnEliminarProyecto"
+
+                            data-id="${proyecto.id}"
+                            data-nombre="${proyecto.nombre}"
+
+                            style="
+                                padding: 0 14px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            <i data-lucide="trash-2" size="16"></i>
+                        </button>
                     </div>
 
                 </div>
@@ -262,3 +274,71 @@ async function cargarProyectos() {
     }
 
 }
+
+document.addEventListener("click", async e => {
+
+    const btnEliminar =
+        e.target.closest(".btnEliminarProyecto");
+
+    if (!btnEliminar) {
+        return;
+    }
+
+    const idProyecto =
+        btnEliminar.dataset.id;
+
+    const nombreProyecto =
+        btnEliminar.dataset.nombre;
+
+    const confirmar =
+        confirm(
+            `¿Eliminar el proyecto "${nombreProyecto}"?`
+        );
+
+    if (!confirmar) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `${API_BASE}/deleteProyecto.php`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id_proyecto: idProyecto
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if (!data.success) {
+
+            showToast(data.message, "error");
+            return;
+
+        }
+
+        showToast(
+            "Proyecto eliminado correctamente",
+            "success"
+        );
+
+        await cargarProyectos();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Error al eliminar el proyecto",
+            "error"
+        );
+
+    }
+
+});
