@@ -101,7 +101,7 @@ if ($_SESSION["user"]["id_rol"] != 2) {
                     </span>
 
                     <span>
-                        <?= $_SESSION["user"]["nombre"] ?>
+                        <?= $_SESSION["user"]["nombre"] . " " . $_SESSION["user"]["apellido"] ?>
                     </span>
 
                     <div

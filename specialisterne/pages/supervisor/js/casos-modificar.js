@@ -16,11 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
         cerrarFormularioCaso
     );
 
-    btnEliminarCaso.addEventListener(
-        "click",
-        eliminarCaso
-    );
-
 });
 
 document.addEventListener("click", async e => {
@@ -28,11 +23,24 @@ document.addEventListener("click", async e => {
     const btnEditar =
         e.target.closest(".btnEditarCaso");
 
-    if (!btnEditar) {
+    if (btnEditar) {
+
+        await abrirFormularioEditar(btnEditar);
+
         return;
+
     }
 
-    await abrirFormularioEditar(btnEditar);
+    const btnEliminar =
+        e.target.closest(".btnEliminarCasoTabla");
+
+    if (btnEliminar) {
+
+        await eliminarCaso(
+            btnEliminar.dataset.id
+        );
+
+    }
 
 });
 
@@ -144,7 +152,7 @@ async function abrirFormularioEditar(button) {
 
 }
 
-async function eliminarCaso() {
+async function eliminarCaso(idCaso) {
 
     try {
 
@@ -165,7 +173,7 @@ async function eliminarCaso() {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    id_caso: idCasoEditar
+                    id_caso: idCaso
                 })
             }
         );
@@ -183,8 +191,6 @@ async function eliminarCaso() {
             "Caso eliminado correctamente",
             "success"
         );
-
-        cerrarFormularioCaso();
 
         await cargarCasosProyecto(
             getProyectoActivo()

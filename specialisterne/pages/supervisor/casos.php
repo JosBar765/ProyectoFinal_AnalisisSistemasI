@@ -127,7 +127,7 @@ if ($_SESSION["user"]["id_rol"] != 2) {
                     </span>
 
                     <span>
-                        <?= $_SESSION["user"]["nombre"] ?>
+                        <?= $_SESSION["user"]["nombre"] . " " . $_SESSION["user"]["apellido"] ?>
                     </span>
 
                     <div
@@ -260,20 +260,13 @@ if ($_SESSION["user"]["id_rol"] != 2) {
                             justify-content: space-between;
                             align-items: center;
                         ">
-
-                            <button type="button" id="btnEliminarCaso" class="btn btn-danger" style="display: none;">
-                                Eliminar Caso
+                            <button id="caseSubmit" type="submit" class="btn btn-primary">
+                                Guardar Caso
                             </button>
 
-                            <div class="d-flex gap-2">
-                                <button id="caseSubmit" type="submit" class="btn btn-primary">
-                                    Guardar Caso
-                                </button>
-
-                                <button type="button" id="btnCancelarCaso" class="btn btn-secondary">
-                                    Cancelar
-                                </button>
-                            </div>
+                            <button type="button" id="btnCancelarCaso" class="btn btn-secondary">
+                                Cancelar
+                            </button>
                         </div>
                     </form>
                 </div>

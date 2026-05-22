@@ -34,9 +34,6 @@ const estadoContainer =
 const caseStatus =
     document.getElementById("caseStatus");
 
-const btnEliminarCaso =
-    document.getElementById("btnEliminarCaso");
-
 const caseFormTitle =
     document.getElementById("caseFormTitle");
 
@@ -111,9 +108,6 @@ function abrirModoCrear() {
     estadoContainer.style.display =
         "none";
 
-    btnEliminarCaso.style.display =
-        "none";
-
     casePhase.disabled = false;
 
     casoForm.style.display = "block";
@@ -137,9 +131,6 @@ function abrirModoEditar(caso) {
 
     estadoContainer.style.display =
         "grid";
-
-    btnEliminarCaso.style.display =
-        "block";
 
     casePhase.disabled = true;
 
@@ -183,6 +174,46 @@ function renderizarCasos(casos) {
 
     tabsContainer.innerHTML = "";
     tabContentContainer.innerHTML = "";
+
+    if (casos.length === 0) {
+
+        tabContentContainer.innerHTML = `
+            <div class="card">
+
+                <div
+                    style="
+                        text-align: center;
+                        padding: 40px 20px;
+                    ">
+
+                    <i
+                        data-lucide="list-x"
+                        style="
+                            width: 50px;
+                            height: 50px;
+                            color: var(--text-muted);
+                            margin-bottom: 15px;
+                        ">
+                    </i>
+
+                    <h2 style="margin-bottom: 10px;">
+                        No hay casos de prueba
+                    </h2>
+
+                    <p style="color: var(--text-muted);">
+                        Este proyecto aún no tiene casos registrados.
+                    </p>
+
+                </div>
+
+            </div>
+        `;
+
+        lucide.createIcons();
+
+        return;
+
+    }
 
     const fasesMap = new Map();
 
@@ -264,7 +295,11 @@ function renderizarCasos(casos) {
                         </span>
                     </td>
 
-                    <td>
+                    <td
+                        style="
+                            display: flex;
+                            gap: 8px;
+                        ">
 
                         <button
                             class="btn btn-secondary btnEditarCaso"
@@ -279,6 +314,15 @@ function renderizarCasos(casos) {
                             data-estado-id="${caso.id_estado_caso_prueba}">
 
                             <i data-lucide="edit" size="14"></i>
+
+                        </button>
+
+                        <button
+                            class="btn btn-danger btnEliminarCasoTabla"
+                            style="padding: 4px 8px;"
+                            data-id="${caso.id}">
+
+                            <i data-lucide="trash-2" size="14"></i>
 
                         </button>
 
