@@ -94,12 +94,10 @@ try {
                 round((($completados + $fallidos) / $total) * 100);
         }
 
-        $estado = "Pendiente";
+        $estado = "En Progreso";
 
         if ($avance == 100) {
             $estado = "Completado";
-        } else if ($enProgreso > 0) {
-            $estado = "En Progreso";
         }
 
         $resultado[] = [

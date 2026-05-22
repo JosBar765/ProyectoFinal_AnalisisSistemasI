@@ -94,7 +94,8 @@ async function cargarProyectos() {
             switch (proyecto.estado) {
 
                 case "Activo":
-                    badgeClass = "badge-success";
+                    badgeClass = "badge-primary";
+                    progressColor = "background-color: var(--primary-color);";
                     break;
 
                 case "En Pausa":
@@ -103,7 +104,8 @@ async function cargarProyectos() {
                     break;
 
                 case "Finalizado":
-                    badgeClass = "badge-neutral";
+                    badgeClass = "badge-success";
+                    progressColor = "background-color: var(--success-color);";
                     break;
 
                 case "Cancelado":
@@ -223,7 +225,15 @@ async function cargarProyectos() {
                         class="mt-4 text-center">
 
                         <a
-                            href="index.php?id_proyecto=${proyecto.id}"
+                            href="index.php"
+
+                            onclick="
+                                localStorage.setItem(
+                                    'proyectoActivo',
+                                    ${proyecto.id}
+                                );
+                            "
+
                             class="btn btn-secondary"
                             style="width: 100%;">
 

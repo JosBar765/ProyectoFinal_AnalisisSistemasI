@@ -138,7 +138,7 @@ if ($_SESSION["user"]["id_rol"] != 2) {
                             Supervisor / Dashboard
                         </div>
 
-                        <h1>
+                        <h1 id="nombreProyecto">
                             Dashboard del Proyecto
                         </h1>
 
@@ -395,8 +395,8 @@ if ($_SESSION["user"]["id_rol"] != 2) {
     </div>
 
     <script src="../../js/app.js"></script>
-    <script src="./js/dashboard.js"></script>
-
+    <script src="js/comun.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
 
 </html>

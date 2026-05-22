@@ -1,7 +1,6 @@
-const supervisorBase = `${base}/pages/supervisor`;
-
 const proyectoSelect = document.getElementById("proyectoSelect");
 
+const nombreProyecto = document.getElementById("nombreProyecto");
 const avanceGeneral = document.getElementById("avanceGeneral");
 const estadoProyecto = document.getElementById("estadoProyecto");
 const barraProgresoGeneral = document.getElementById("barraProgresoGeneral");
@@ -18,48 +17,12 @@ const erroresRecientesContainer = document.getElementById("erroresRecientesConta
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    const idFromURL = getProyectoFromURL();
-
-    await cargarProyectos(idFromURL);
-
-    proyectoSelect.addEventListener("change", async () => {
-
-        const idProyecto = proyectoSelect.value;
-
-        await cargarDashboard(idProyecto);
-
-    });
+    await cargarSelectProyectos(
+        proyectoSelect,
+        cargarDashboard
+    );
 
 });
-
-async function cargarProyectos(selectedId = null) {
-
-    const response = await fetch(`${supervisorBase}/php/proyectos/getProyectos.php`);
-    const data = await response.json();
-
-    proyectoSelect.innerHTML = "";
-
-    data.forEach(proyecto => {
-        proyectoSelect.innerHTML += `
-            <option value="${proyecto.id}">
-                ${proyecto.nombre}
-            </option>
-        `;
-    });
-
-    // decidir qué proyecto seleccionar
-    let idFinal = selectedId;
-
-    if (!idFinal && data.length > 0) {
-        idFinal = data[0].id;
-    }
-
-    // setear valor visual del select
-    proyectoSelect.value = idFinal;
-
-    // cargar dashboard inicial
-    await cargarDashboard(idFinal);
-}
 
 async function cargarDashboard(idProyecto) {
 
@@ -81,11 +44,37 @@ async function cargarResumen(idProyecto) {
 
         const data = await response.json();
 
+        nombreProyecto.textContent =
+            `${data.proyecto}`;
+
+        let badgeClass = "badge-neutral";
+        let progressBarColor = "primary-color";
+
         avanceGeneral.textContent =
             `Avance General: ${data.avance}%`;
 
+        // Color del badge y general progress bar
+        if (data.estado === "Finalizado") {
+            badgeClass = "badge-success";
+            progressBarColor = "success-color";
+        }
+        else if (data.estado === "Activo") {
+            badgeClass = "badge-primary";
+            progressBarColor = "primary-color";
+        }
+        else if (data.estado === "En Pausa") {
+            badgeClass = "badge-warning";
+            progressBarColor = "warning-color";
+        }
+
         estadoProyecto.textContent =
             data.estado;
+
+        estadoProyecto.className =
+            `badge ${badgeClass}`;
+
+        barraProgresoGeneral.style.backgroundColor =
+            `var(--${progressBarColor})`
 
         barraProgresoGeneral.style.width =
             `${data.avance}%`;
@@ -106,9 +95,7 @@ async function cargarResumen(idProyecto) {
             data.fallidos;
 
     } catch (error) {
-
         console.error(error);
-
     }
 
 }
@@ -128,17 +115,16 @@ async function cargarFases(idProyecto) {
         data.forEach(fase => {
 
             let badgeClass = "badge-neutral";
+            let progressBarColor = "primary-color";
 
+            // Color del badge y progress bar de cada fase
             if (fase.estado === "Completado") {
                 badgeClass = "badge-success";
+                progressBarColor = "success-color";
             }
-
             else if (fase.estado === "En Progreso") {
                 badgeClass = "badge-primary";
-            }
-
-            else if (fase.estado === "Fallido") {
-                badgeClass = "badge-error";
+                progressBarColor = "primary-color";
             }
 
             tablaFasesBody.innerHTML += `
@@ -158,7 +144,10 @@ async function cargarFases(idProyecto) {
 
                                 <div
                                     class="progress-bar"
-                                    style="width: ${fase.avance}%;">
+                                    style="
+                                        width: ${fase.avance}%;
+                                        background-color: var(--${progressBarColor});
+                                    ">
                                 </div>
 
                             </div>
@@ -211,7 +200,7 @@ async function cargarErrores(idProyecto) {
             }
 
             else if (error.severidad === "CRITICO") {
-                severidadColor = "#D64045";
+                severidadColor = "var(--error-color)";
             }
 
             else if (error.severidad === "MEDIO") {
@@ -281,9 +270,4 @@ async function cargarErrores(idProyecto) {
 
     }
 
-}
-
-function getProyectoFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("id_proyecto");
 }
