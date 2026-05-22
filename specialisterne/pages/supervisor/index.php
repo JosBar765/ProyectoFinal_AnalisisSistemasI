@@ -1,8 +1,7 @@
 <?php
 session_start();
 
-// Si se sube a un host, darle el valor ""
-$path = "/specialisterne";
+require_once '../../php/path.php';
 
 if (!isset($_SESSION["user"])) {
     header("Location: {$path}/index.php");
