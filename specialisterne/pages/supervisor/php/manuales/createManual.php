@@ -5,6 +5,8 @@ header("Content-Type: application/json");
 require_once '../../../../php/db.php';
 require_once "../../../../php/envLoader.php";
 
+$lockName = null;
+
 try {
 
     $idProyecto =
@@ -68,6 +70,23 @@ try {
         );
     }
 
+    // =================================================================
+    // CANDADO DE IDEMPOTENCIA CON CURRENTE (GET_LOCK DE MYSQL)
+    // =================================================================
+    // Generamos una clave única basada en el proyecto y el nombre del manual
+    $lockName = "lock_manual_" . $idProyecto . "_" . md5($titulo);
+
+    // Solicitamos un candado exclusivo por un máximo de 5 segundos
+    $stmtLock = $pdo->prepare("SELECT GET_LOCK(?, 5) AS locked");
+    $stmtLock->execute([$lockName]);
+    $lockResult = $stmtLock->fetch(PDO::FETCH_ASSOC);
+
+    if (!$lockResult || $lockResult['locked'] != 1) {
+        throw new Exception(
+            "Tu solicitud ya está siendo procesada en el servidor. Por favor, espera."
+        );
+    }
+
     // =========================
     // OBTENER PROYECTO
     // =========================
@@ -90,6 +109,23 @@ try {
         );
     }
 
+    // Ahora que las peticiones se ejecutan de manera secuencial gracias al candado, 
+    // la verificación de duplicados por tiempo funcionará al 100%.
+    $stmtCheck = $pdo->prepare("
+        SELECT id FROM ManualPrueba 
+        WHERE id_proyecto = ? 
+        AND titulo = ? 
+        AND fecha_subida >= NOW() - INTERVAL 1 MINUTE
+    ");
+
+    $stmtCheck->execute([$idProyecto, $titulo]);
+
+    if ($stmtCheck->fetch()) {
+        throw new Exception(
+            "Este manual ya se guardó hace unos instantes (Petición duplicada protegida)."
+        );
+    }
+
     // =========================
     // CLOUDINARY
     // =========================
@@ -108,14 +144,14 @@ try {
 
     $nombreProyecto =
         preg_replace(
-            '/[^a-zA-Z0-9_-]/',
+            '/[^a-záéíóúA-ZÁÉÍÓÚ0-9_-]/',
             '_',
             $proyecto["nombre"]
         );
 
     $tituloManual =
         preg_replace(
-            '/[^a-zA-Z0-9_-]/',
+            '/[^a-záéíóúA-ZÁÉÍÓÚ0-9_-]/',
             '_',
             $titulo
         );
@@ -280,4 +316,10 @@ try {
         "success" => false,
         "message" => $e->getMessage()
     ]);
+} finally {
+    // IMPORTANTE: Liberamos explícitamente el candado en la base de datos al finalizar
+    if ($lockName !== null && isset($pdo)) {
+        $stmtRelease = $pdo->prepare("SELECT RELEASE_LOCK(?)");
+        $stmtRelease->execute([$lockName]);
+    }
 }

@@ -16,7 +16,6 @@ try {
     // =========================
     // OBTENER LA URL DEL MANUAL
     // =========================
-    // Solo necesitamos la URL, ya no necesitamos el proyecto ni el título
     $stmt = $pdo->prepare("
         SELECT url 
         FROM ManualPrueba 
@@ -33,8 +32,6 @@ try {
     // =========================
     // EXTRAER PUBLIC ID DE LA URL
     // =========================
-    // La URL viene así: https://res.cloudinary.com/cloud/raw/upload/v1730000000/manuales/archivo.pdf
-
     $url = $manual["url"];
     $parts = explode('/upload/', $url);
 
@@ -42,19 +39,17 @@ try {
         throw new Exception("Formato de URL de Cloudinary inválido");
     }
 
-    $ruta = $parts[1]; // Esto nos da: v1730000000/manuales/archivo.pdf
+    $ruta = $parts[1];
 
-    // Quitamos la carpeta de versión de Cloudinary (ej: v123456/) usando una expresión regular
+    // Quitamos la carpeta de versión (ej: v123456/)
     $publicId = preg_replace('/^v\d+\//', '', $ruta);
 
-    // $publicId ahora es exactamente: manuales/TuProyecto-Titulo-Fecha.pdf
-    // OJO: Para archivos RAW, Cloudinary exige la extensión .pdf en el public_id, por lo que así está perfecto.
+    // [!] SOLUCIÓN: Decodificamos la URL para transformar los %20, %C3%B3, etc. a sus caracteres originales
+    $publicId = urldecode($publicId);
 
     // =========================
     // CLOUDINARY DELETE
     // =========================
-
-    // Usamos getenv() para mantener consistencia con tu createManual.php
     $cloud_name = getenv('CLOUDINARY_CLOUD_NAME');
     $api_key = getenv('CLOUDINARY_API_KEY');
     $api_secret = getenv('CLOUDINARY_API_SECRET');
@@ -101,7 +96,6 @@ try {
 
     $result = json_decode($response, true);
 
-    // Verificamos si la respuesta de Cloudinary fue exitosa ("ok" o "not found" si ya había sido borrado antes manualmante)
     if (!isset($result["result"]) || !in_array($result["result"], ["ok", "not found"])) {
         throw new Exception("Cloudinary rechazó la eliminación: " . ($result['error']['message'] ?? 'Error desconocido'));
     }

@@ -70,6 +70,8 @@ function cerrarFormularioManual() {
         "none";
 
     formManual.reset();
+    // Nos aseguramos de limpiar el estado de envío al cerrar
+    formManual.removeAttribute("data-submitting");
 
 }
 
@@ -77,7 +79,24 @@ async function guardarManual(e) {
 
     e.preventDefault();
 
+    // Si ya tiene el atributo, cortamos la ejecución de inmediato
+    if (formManual.getAttribute("data-submitting") === "true") {
+        return;
+    }
+
+    // Bloqueo inmediato en la primera línea de ejecución del evento
+    formManual.setAttribute("data-submitting", "true");
+
+    const btnSubmit = formManual.querySelector('button[type="submit"]');
+    const originalText = btnSubmit ? btnSubmit.innerHTML : 'Guardar';
+
     try {
+
+        if (btnSubmit) {
+            btnSubmit.disabled = true;
+            btnSubmit.style.pointerEvents = 'none'; // Desactiva interacciones del mouse a nivel de navegador
+            btnSubmit.innerHTML = 'Subiendo...';
+        }
 
         const archivo =
             manualFile.files[0];
@@ -88,9 +107,7 @@ async function guardarManual(e) {
                 "Selecciona un PDF",
                 "error"
             );
-
             return;
-
         }
 
         if (archivo.type !== "application/pdf") {
@@ -99,9 +116,7 @@ async function guardarManual(e) {
                 "Solo se permiten PDFs",
                 "error"
             );
-
             return;
-
         }
 
         const limite =
@@ -113,9 +128,7 @@ async function guardarManual(e) {
                 "El PDF supera los 25 MB",
                 "error"
             );
-
             return;
-
         }
 
         const formData =
@@ -158,9 +171,7 @@ async function guardarManual(e) {
                 data.message,
                 "error"
             );
-
             return;
-
         }
 
         showToast(
@@ -182,6 +193,17 @@ async function guardarManual(e) {
             "Error al subir el manual",
             "error"
         );
+
+    } finally {
+
+        // IMPORTANTE: Liberamos el formulario SIEMPRE al terminar el proceso completo
+        formManual.removeAttribute("data-submitting");
+
+        if (btnSubmit) {
+            btnSubmit.disabled = false;
+            btnSubmit.style.pointerEvents = 'auto';
+            btnSubmit.innerHTML = originalText;
+        }
 
     }
 
@@ -246,7 +268,7 @@ function renderizarManuales(manuales) {
                     </i>
 
                     <h2 style="margin-bottom: 10px;">
-                        No hay casos de prueba
+                        No hay manuales
                     </h2>
 
                     <p style="color: var(--text-muted);">
