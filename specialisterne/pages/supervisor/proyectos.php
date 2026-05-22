@@ -163,7 +163,7 @@ if ($_SESSION["user"]["id_rol"] != 2) {
     </div>
 
     <script src="../../js/app.js"></script>
-    <script src="js/proyectos.js"></script>
+    <script src="js/proyectos/proyectos.js"></script>
 
 </body>
 

@@ -1,5 +1,3 @@
-const API_BASE = `${base}/pages/supervisor/php/proyectos`;
-
 const formProyecto = document.getElementById("proyectoForm");
 const fasesContainer = document.getElementById("fasesContainer");
 const btnAgregarFase = document.getElementById("btnAgregarFase");
@@ -165,8 +163,7 @@ async function guardarProyecto(event) {
 
         };
 
-        const response = await fetch(
-            `${API_BASE}/createProyecto.php`,
+        const response = await fetch(`${supervisorBase}/php/proyectos/createProyecto.php`,
             {
                 method: "POST",
                 headers: {

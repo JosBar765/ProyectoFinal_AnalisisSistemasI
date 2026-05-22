@@ -1,5 +1,3 @@
-const API_BASE = `${base}/pages/supervisor/php/proyectos`;
-
 const proyectosContainer = document.getElementById("proyectosContainer");
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -10,9 +8,7 @@ async function cargarProyectos() {
 
     try {
 
-        const response = await fetch(
-            `${API_BASE}/getProyectosDetalle.php`
-        );
+        const response = await fetch(`${supervisorBase}/php/proyectos/getProyectosDetalle.php`);
 
         const data = await response.json();
 
@@ -301,8 +297,7 @@ document.addEventListener("click", async e => {
 
     try {
 
-        const response = await fetch(
-            `${API_BASE}/deleteProyecto.php`,
+        const response = await fetch(`${supervisorBase}/php/proyectos/deleteProyecto.php`,
             {
                 method: "POST",
                 headers: {

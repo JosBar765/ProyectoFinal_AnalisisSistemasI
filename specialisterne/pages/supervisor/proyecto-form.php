@@ -378,7 +378,7 @@ if ($_SESSION["user"]["id_rol"] != 2) {
     </div>
 
     <script src="../../js/app.js"></script>
-    <script src="js/proyecto-form.js"></script>
+    <script src="js/proyectos/proyecto-form.js"></script>
 
 </body>
 

@@ -395,7 +395,7 @@ if ($_SESSION["user"]["id_rol"] != 2) {
 
     <script src="../../js/app.js"></script>
     <script src="js/comun.js"></script>
-    <script src="js/dashboard.js"></script>
+    <script src="js/dashboard/dashboard.js"></script>
 </body>
 
 </html>

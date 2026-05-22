@@ -287,9 +287,9 @@ if ($_SESSION["user"]["id_rol"] != 2) {
 
     <script src="../../js/app.js"></script>
     <script src="js/comun.js"></script>
-    <script src="js/casos.js"></script>
-    <script src="js/casos-agregar.js"></script>
-    <script src="js/casos-modificar.js"></script>
+    <script src="js/casos/casos.js"></script>
+    <script src="js/casos/casos-agregar.js"></script>
+    <script src="js/casos/casos-modificar.js"></script>
 
 </body>
 
