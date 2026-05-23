@@ -102,6 +102,7 @@ CREATE TABLE `ErrorReporte` (
   `titulo` varchar(255),
   `descripcion` text,
   `id_severidad_error` int NOT NULL
+  `estado` boolean
 );
 
 CREATE TABLE `ImagenErrorReporte` (

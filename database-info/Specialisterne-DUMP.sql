@@ -136,9 +136,9 @@ INSERT INTO `ejecucionprueba` (`id`, `id_consultor`, `id_caso_prueba`, `resultad
 
 -- Volcado de datos para la tabla `errorreporte` (Depende de `ejecucionprueba` y `severidaderror`)
 INSERT INTO `errorreporte` (`id`, `id_ejecucion`, `titulo`, `descripcion`, `id_severidad_error`) VALUES
-(1, 5, 'Calculo incorrecto de IVA', 'El sistema calcula 18% en lugar de 21%.', 4),
-(2, 4, 'Botón generar factura no responde', 'El botón no ejecuta acción en Firefox.', 3),
-(3, 7, 'Duplicación de productos en carrito', 'Se agregan productos duplicados.', 2);
+(1, 5, 'Calculo incorrecto de IVA', 'El sistema calcula 18% en lugar de 21%.', 4, 1),
+(2, 4, 'Botón generar factura no responde', 'El botón no ejecuta acción en Firefox.', 3, 0),
+(3, 7, 'Duplicación de productos en carrito', 'Se agregan productos duplicados.', 2, 1);
 
 COMMIT;
 
