@@ -228,8 +228,7 @@ if ($_SESSION["user"]["id_rol"] != 2) {
                 </div>
 
                 <!-- TABLA -->
-
-                <div class="card">
+                <div class="card" id="erroresTableCard">
 
                     <div class="card-header">
 

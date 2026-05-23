@@ -97,14 +97,50 @@ function renderErrores(errores) {
 
     erroresTableBody.innerHTML = "";
 
+    if (errores.length === 0) {
+
+        erroresTableBody.innerHTML = `
+            <tr>
+                <td colspan="8">
+
+                    <div
+                        style="
+                            text-align: center;
+                            padding: 40px 20px;
+                        ">
+
+                        <i
+                            data-lucide="list-x"
+                            style="
+                                width: 50px;
+                                height: 50px;
+                                color: var(--text-muted);
+                                margin-bottom: 15px;
+                            ">
+                        </i>
+
+                        <h2 style="margin-bottom: 10px;">
+                            No hay errores
+                        </h2>
+
+                    </div>
+
+                </td>
+            </tr>
+        `;
+
+        lucide.createIcons();
+
+        return;
+
+    }
+
     errores.forEach(error => {
 
         erroresTableBody.innerHTML += `
             <tr>
 
-                <td>
-                    ${error.id}
-                </td>
+                <td>${error.id}</td>
 
                 <td>
                     <strong>
@@ -150,15 +186,12 @@ function renderErrores(errores) {
                         </button>
 
                         <button
-                            class="btn ${error.estado == 1 ? "btn-success" : "btn-warning"} btnCambiarEstado"
+                            class="btn btn-primary btnCambiarEstado"
                             style="padding: 4px 8px;"
                             data-id="${error.id}"
                             data-estado="${error.estado}">
 
-                            <i
-                                data-lucide="${error.estado == 1 ? "check-circle" : "rotate-ccw"}"
-                                size="14">
-                            </i>
+                            <i data-lucide="refresh-cw" size="14"></i>
 
                         </button>
 
