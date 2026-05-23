@@ -185,22 +185,13 @@ if ($_SESSION["user"]["id_rol"] != 2) {
 
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="display: none;">
 
                                 <label class="form-label">
                                     Caso de Prueba
                                 </label>
 
-                                <select
-                                    class="form-control"
-                                    id="casoPrueba"
-                                    required>
-
-                                    <option value="">
-                                        Selecciona un caso
-                                    </option>
-
-                                </select>
+                                <select class="form-control" id="casoPrueba" disabled></select>
 
                             </div>
 
@@ -311,7 +302,8 @@ if ($_SESSION["user"]["id_rol"] != 2) {
                                     type="file"
                                     class="form-control"
                                     id="capturaError"
-                                    accept=".jpg,.jpeg,.png">
+                                    accept=".jpg,.jpeg,.png,.webp"
+                                    multiple>
 
                                 <small
                                     style="
@@ -320,7 +312,7 @@ if ($_SESSION["user"]["id_rol"] != 2) {
                                         color: var(--text-muted);
                                     ">
 
-                                    Formatos permitidos: JPG o PNG.
+                                    Formatos permitidos: JPG, PNG o WEBP.
 
                                 </small>
 
