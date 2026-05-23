@@ -48,7 +48,7 @@ async function cargarEjecuciones() {
     try {
 
         const response = await fetch(
-            `${supervisorBase}/php/errores/getEjecucionesPrueba.php`
+            `${supervisorBase}/php/errores/getEjecucionesPrueba.php?id_proyecto=${getProyectoActivo()}`
         );
 
         const data = await response.json();
@@ -227,10 +227,10 @@ function validarImagenes(files) {
         const sizeMB =
             file.size / (1024 * 1024);
 
-        if (sizeMB > 0.5) {
+        if (sizeMB > 1) {
 
             showToast(
-                `${file.name} supera 0.5MB`,
+                `${file.name} supera 1MB`,
                 "error"
             );
 
