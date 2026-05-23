@@ -71,6 +71,15 @@ if ($_SESSION["user"]["id_rol"] != 2) {
                         <div class="breadcrumb">Supervisor / Errores</div>
                         <h1>Errores Reportados</h1>
                     </div>
+
+                    <a
+                        href="error-form.php"
+                        class="btn btn-primary">
+
+                        <i data-lucide="plus"></i>
+                        Registrar Error
+
+                    </a>
                 </div>
 
                 <!-- Detalle de Error (Oculto por defecto) -->
