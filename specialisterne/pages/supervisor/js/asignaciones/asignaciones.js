@@ -75,38 +75,47 @@ function renderConsultoresDisponibles(consultores) {
 
     consultores.forEach(c => {
 
+        const skills = Array.isArray(c.skills) ? c.skills : [];
+
         consultoresDisponiblesContainer.innerHTML += `
             <div class="card" style="background: var(--bg-color); box-shadow: none; margin: 0;">
 
                 <div class="d-flex justify-between align-center">
 
-                    <div>
-                        <strong>${c.nombre}</strong>
+                    <div class="d-flex align-center gap-3">
 
-                        <p style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">
-                            ${c.descripcion ?? ""}
-                        </p>
-
-                        <div style="margin-top: 8px;">
-                            ${(c.skills || []).map(s => `
-                                <span class="badge badge-neutral" style="font-size: 11px;">
-                                    ${s}
-                                </span>
-                            `).join("")}
+                        <div class="avatar" style="background-color: var(--primary-color);">
+                            ${c.nombre.charAt(0)}${c.apellido.charAt(0)}
                         </div>
+
+                        <div>
+
+                            <strong>${c.nombre} ${c.apellido}</strong>
+
+                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">
+                                ${c.descripcion ?? ""}
+                            </p>
+
+                            <div style="margin-top: 8px;">
+                                ${skills.map(s => `
+                                    <span class="badge badge-neutral" style="font-size: 11px;">
+                                        ${s}
+                                    </span>
+                                `).join("")}
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <button
-                        class="btn btn-primary btnAsignar"
-                        data-id="${c.id}">
-                        Asignar <i data-lucide="arrow-right" size="16"></i>
+                    <button class="btn btn-primary btnAsignar" data-id="${c.id}">
+                        <i data-lucide="user-plus" size="16"></i>
                     </button>
 
                 </div>
 
             </div>
         `;
-
     });
 
     lucide.createIcons();
@@ -115,20 +124,13 @@ function renderConsultoresDisponibles(consultores) {
 
         btn.addEventListener("click", async () => {
 
-            const idConsultor = btn.dataset.id;
+            const fd = new FormData();
+            fd.append("id_consultor", btn.dataset.id);
+            fd.append("id_proyecto", getProyectoActivo());
 
-            // endpoint futuro
             const response = await fetch(
                 `${supervisorBase}/php/asignaciones/asignarConsultor.php`,
-                {
-                    method: "POST",
-                    body: (() => {
-                        const fd = new FormData();
-                        fd.append("id_consultor", idConsultor);
-                        fd.append("id_proyecto", getProyectoActivo());
-                        return fd;
-                    })()
-                }
+                { method: "POST", body: fd }
             );
 
             const data = await response.json();
@@ -138,14 +140,12 @@ function renderConsultoresDisponibles(consultores) {
                 return;
             }
 
-            showToast("Consultor agregado", "success");
+            showToast("Consultor asignado al proyecto");
 
             cargarAsignacionesProyecto(getProyectoActivo());
-
         });
 
     });
-
 }
 
 
@@ -188,13 +188,8 @@ function renderConsultoresAsignados(consultores) {
     contadorAsignados.textContent =
         `${consultores.length} Asignados`;
 
-    if (consultores.length === 0) {
-
-        emptyAsignadosState.style.display = "block";
-        return;
-    }
-
-    emptyAsignadosState.style.display = "none";
+    emptyAsignadosState.style.display =
+        consultores.length === 0 ? "block" : "none";
 
     consultores.forEach(c => {
 
@@ -206,11 +201,11 @@ function renderConsultoresAsignados(consultores) {
                     <div class="d-flex align-center gap-3">
 
                         <div class="avatar" style="background-color: var(--primary-color);">
-                            ${c.nombre.charAt(0)}
+                            ${c.nombre.charAt(0)}${c.apellido.charAt(0)}
                         </div>
 
                         <div>
-                            <strong>${c.nombre}</strong>
+                            <strong>${c.nombre} ${c.apellido}</strong>
 
                             <p style="font-size: 12px; color: var(--text-muted);">
                                 Asignado: ${c.fecha_asignacion}
@@ -227,14 +222,12 @@ function renderConsultoresAsignados(consultores) {
                         class="btn btn-danger btnRemover"
                         data-id="${c.id}">
                         <i data-lucide="user-minus" size="16"></i>
-                        Remover
                     </button>
 
                 </div>
 
             </div>
         `;
-
     });
 
     lucide.createIcons();
@@ -245,16 +238,15 @@ function renderConsultoresAsignados(consultores) {
 
             const idConsultor = btn.dataset.id;
 
+            const fd = new FormData();
+            fd.append("id_consultor", idConsultor);
+            fd.append("id_proyecto", getProyectoActivo());
+
             const response = await fetch(
                 `${supervisorBase}/php/asignaciones/removerConsultor.php`,
                 {
                     method: "POST",
-                    body: (() => {
-                        const fd = new FormData();
-                        fd.append("id_consultor", idConsultor);
-                        fd.append("id_proyecto", getProyectoActivo());
-                        return fd;
-                    })()
+                    body: fd
                 }
             );
 
@@ -265,12 +257,10 @@ function renderConsultoresAsignados(consultores) {
                 return;
             }
 
-            showToast("Consultor eliminado del proyecto", "warning");
+            showToast("Consultor eliminado del proyecto");
 
             cargarAsignacionesProyecto(getProyectoActivo());
-
         });
 
     });
-
 }

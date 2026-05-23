@@ -24,15 +24,27 @@ try {
         INNER JOIN Usuario u ON u.id = c.id_usuario
         INNER JOIN PerfilTrabajo p ON p.id = c.id_perfil_trabajo
         WHERE pc.id_proyecto = ?
+        ORDER BY pc.fecha_asignacion
     ");
 
     $stmt->execute([$idProyecto]);
 
     $consultores = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    $data = array_map(function ($c) {
+
+        return [
+            "id" => $c["id"],
+            "nombre" => $c["nombre"],
+            "apellido" => $c["apellido"],
+            "descripcion" => $c["perfil_trabajo"],
+            "fecha_asignacion" => $c["fecha_asignacion"]
+        ];
+    }, $consultores);
+
     echo json_encode([
         "success" => true,
-        "consultores" => $consultores
+        "consultores" => $data
     ]);
 } catch (Exception $e) {
 
