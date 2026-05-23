@@ -102,7 +102,7 @@ if ($_SESSION["user"]["id_rol"] != 2) {
                         class="avatar"
                         style="background-color: var(--warning-color);">
 
-                        <?= strtoupper(substr($_SESSION["user"]["nombre"], 0, 1)) ?>
+                        <?= strtoupper(substr($_SESSION["user"]["nombre"], 0, 1)) . strtoupper(substr($_SESSION["user"]["apellido"], 0, 1)) ?>
 
                     </div>
 
@@ -163,8 +163,8 @@ if ($_SESSION["user"]["id_rol"] != 2) {
     </div>
 
     <script src="../../js/app.js"></script>
+    <script src="js/comun.js"></script>
     <script src="js/proyectos/proyectos.js"></script>
-
 </body>
 
 </html>

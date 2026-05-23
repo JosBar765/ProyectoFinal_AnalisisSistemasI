@@ -53,9 +53,15 @@ if ($_SESSION["user"]["id_rol"] != 2) {
                 </div>
                 <div class="user-info">
                     <span class="role-badge" style="background-color: rgba(232, 168, 56, 0.15); color: var(--warning-color);">Supervisor</span>
-                    <span>Laura Martínez</span>
-                    <div class="avatar" style="background-color: var(--warning-color);">L</div>
-                    <a id="logoutBtn" href="../../index.php" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
+                    <span>
+                        <?= $_SESSION["user"]["nombre"] . " " . $_SESSION["user"]["apellido"] ?>
+                    </span>
+                    <div class="avatar" style="background-color: var(--warning-color);">
+                        <?= strtoupper(substr($_SESSION["user"]["nombre"], 0, 1)) . strtoupper(substr($_SESSION["user"]["apellido"], 0, 1)) ?>
+                    </div>
+                    <a id="logoutBtn" href="../../index.php" title="Cerrar sesión" style="color: var(--text-muted);">
+                        <i data-lucide="log-out" size="18"></i>
+                    </a>
                 </div>
             </header>
 
