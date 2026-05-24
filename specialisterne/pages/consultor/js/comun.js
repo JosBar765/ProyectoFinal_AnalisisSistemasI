@@ -1,0 +1,1 @@
+const supervisorBase = `${base}/pages/consultor`;
