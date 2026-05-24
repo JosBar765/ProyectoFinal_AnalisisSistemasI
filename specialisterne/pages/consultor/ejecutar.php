@@ -35,8 +35,8 @@ if ($_SESSION["user"]["id_rol"] != 3) {
                 <h2>Specialisterne</h2>
             </div>
             <nav class="sidebar-nav">
-                <a href="index.html" class="active"><i data-lucide="folder-kanban"></i> Mis Proyectos</a>
-                <a href="tareas.html"><i data-lucide="check-square"></i> Mis Tareas</a>
+                <a href="index.php" class="active"><i data-lucide="folder-kanban"></i> Mis Proyectos</a>
+                <a href="tareas.php"><i data-lucide="check-square"></i> Mis Tareas</a>
             </nav>
         </aside>
 
@@ -50,14 +50,14 @@ if ($_SESSION["user"]["id_rol"] != 3) {
                     <span class="role-badge" style="background-color: rgba(74, 111, 165, 0.15); color: var(--primary-color);">Consultor</span>
                     <span>María García</span>
                     <div class="avatar" style="background-color: var(--primary-color);">M</div>
-                    <a id="logoutBtn" href="../../index.html" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
+                    <a id="logoutBtn" href="../../index.php" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
                 </div>
             </header>
 
             <div class="content-area">
                 <div class="page-header">
                     <div class="page-title">
-                        <div class="breadcrumb"><a href="casos.html" style="color: var(--text-muted); text-decoration: none;"><i data-lucide="arrow-left" size="14"></i> Volver a la lista de casos</a></div>
+                        <div class="breadcrumb"><a href="casos.php" style="color: var(--text-muted); text-decoration: none;"><i data-lucide="arrow-left" size="14"></i> Volver a la lista de casos</a></div>
                         <h1 style="margin-top: 10px;">Ejecutar Caso: CP-015</h1>
                     </div>
                 </div>
@@ -95,7 +95,7 @@ if ($_SESSION["user"]["id_rol"] != 3) {
                     <div class="card" style="background: #F8F9FB; border: 1px solid var(--border-color);">
                         <h2 class="card-title" style="margin-bottom: 20px;">Registrar Resultado</h2>
 
-                        <form action="casos.html" data-redirect="casos.html" id="ejecucionForm">
+                        <form action="casos.php" data-redirect="casos.php" id="ejecucionForm">
                             <div class="form-group">
                                 <label class="form-label" style="font-size: 16px;">¿El resultado fue el esperado?</label>
                                 <select class="form-control" id="resultadoSelect" style="font-size: 16px; padding: 12px;" required onchange="handleResultadoChange()">
@@ -119,13 +119,13 @@ if ($_SESSION["user"]["id_rol"] != 3) {
                             <!-- Botón para reportar error visible solo si falla -->
                             <div id="errorReportBtn" style="display: none; margin-bottom: 20px; background: rgba(214, 64, 69, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid var(--error-color);">
                                 <p style="font-size: 14px; margin-bottom: 10px; color: var(--error-color); font-weight: 500;"><i data-lucide="alert-triangle" size="16"></i> Has marcado la prueba como Fallida.</p>
-                                <a href="reportar.html" class="btn btn-danger" style="width: 100%;">Proceder a Reportar Error Fijo</a>
+                                <a href="reportar.php" class="btn btn-danger" style="width: 100%;">Proceder a Reportar Error Fijo</a>
                                 <p style="font-size: 12px; margin-top: 10px; text-align: center; color: var(--text-muted);">Al hacer clic, guardarás el estado y podrás adjuntar capturas de pantalla del error.</p>
                             </div>
 
                             <div class="d-flex gap-2" id="submitButtons">
                                 <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px;">Guardar Ejecución</button>
-                                <a href="casos.html" class="btn btn-secondary" style="padding: 12px;">Cancelar</a>
+                                <a href="casos.php" class="btn btn-secondary" style="padding: 12px;">Cancelar</a>
                             </div>
                         </form>
                     </div>

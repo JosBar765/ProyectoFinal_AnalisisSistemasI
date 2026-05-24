@@ -52,8 +52,8 @@ if ($_SESSION["user"]["id_rol"] != 3) {
                 <h2>Specialisterne</h2>
             </div>
             <nav class="sidebar-nav">
-                <a href="index.html" class="active"><i data-lucide="folder-kanban"></i> Mis Proyectos</a>
-                <a href="tareas.html"><i data-lucide="check-square"></i> Mis Tareas</a>
+                <a href="index.php" class="active"><i data-lucide="folder-kanban"></i> Mis Proyectos</a>
+                <a href="tareas.php"><i data-lucide="check-square"></i> Mis Tareas</a>
             </nav>
         </aside>
 
@@ -67,14 +67,14 @@ if ($_SESSION["user"]["id_rol"] != 3) {
                     <span class="role-badge" style="background-color: rgba(74, 111, 165, 0.15); color: var(--primary-color);">Consultor</span>
                     <span>María García</span>
                     <div class="avatar" style="background-color: var(--primary-color);">M</div>
-                    <a id="logoutBtn" href="../../index.html" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
+                    <a id="logoutBtn" href="../../index.php" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
                 </div>
             </header>
 
             <div class="content-area">
                 <div class="page-header">
                     <div class="page-title">
-                        <div class="breadcrumb"><a href="index.html" style="color: var(--text-muted); text-decoration: none;"><i data-lucide="arrow-left" size="14"></i> Volver a Mis Proyectos</a></div>
+                        <div class="breadcrumb"><a href="index.php" style="color: var(--text-muted); text-decoration: none;"><i data-lucide="arrow-left" size="14"></i> Volver a Mis Proyectos</a></div>
                         <h1 style="margin-top: 10px;">Casos de Prueba Asignados</h1>
                     </div>
                 </div>
@@ -99,7 +99,7 @@ if ($_SESSION["user"]["id_rol"] != 3) {
                                     <p style="font-size: 14px;">El sistema debe calcular correctamente el IVA (21%) al generar una factura B.</p>
                                 </div>
                                 <div>
-                                    <a href="ejecutar.html" class="btn btn-primary" style="padding: 12px 24px;">Ejecutar Prueba <i data-lucide="play" size="16"></i></a>
+                                    <a href="ejecutar.php" class="btn btn-primary" style="padding: 12px 24px;">Ejecutar Prueba <i data-lucide="play" size="16"></i></a>
                                 </div>
                             </div>
 
@@ -113,7 +113,7 @@ if ($_SESSION["user"]["id_rol"] != 3) {
                                     <p style="font-size: 14px;">Ingresar una contraseña incorrecta y verificar que aparece el mensaje rojo.</p>
                                 </div>
                                 <div>
-                                    <a href="ejecutar.html" class="btn btn-primary" style="padding: 12px 24px;">Ejecutar Prueba <i data-lucide="play" size="16"></i></a>
+                                    <a href="ejecutar.php" class="btn btn-primary" style="padding: 12px 24px;">Ejecutar Prueba <i data-lucide="play" size="16"></i></a>
                                 </div>
                             </div>
 

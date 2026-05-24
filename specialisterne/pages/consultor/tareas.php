@@ -35,8 +35,8 @@ if ($_SESSION["user"]["id_rol"] != 3) {
                 <h2>Specialisterne</h2>
             </div>
             <nav class="sidebar-nav">
-                <a href="index.html"><i data-lucide="folder-kanban"></i> Mis Proyectos</a>
-                <a href="tareas.html" class="active"><i data-lucide="check-square"></i> Mis Tareas</a>
+                <a href="index.php"><i data-lucide="folder-kanban"></i> Mis Proyectos</a>
+                <a href="tareas.php" class="active"><i data-lucide="check-square"></i> Mis Tareas</a>
             </nav>
         </aside>
 
@@ -47,7 +47,7 @@ if ($_SESSION["user"]["id_rol"] != 3) {
                     <span class="role-badge" style="background-color: rgba(74, 111, 165, 0.15); color: var(--primary-color);">Consultor</span>
                     <span>María García</span>
                     <div class="avatar" style="background-color: var(--primary-color);">M</div>
-                    <a id="logoutBtn" href="../../index.html" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
+                    <a id="logoutBtn" href="../../index.php" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
                 </div>
             </header>
 

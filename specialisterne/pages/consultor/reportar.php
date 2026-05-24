@@ -35,8 +35,8 @@ if ($_SESSION["user"]["id_rol"] != 3) {
                 <h2>Specialisterne</h2>
             </div>
             <nav class="sidebar-nav">
-                <a href="index.html" class="active"><i data-lucide="folder-kanban"></i> Mis Proyectos</a>
-                <a href="tareas.html"><i data-lucide="check-square"></i> Mis Tareas</a>
+                <a href="index.php" class="active"><i data-lucide="folder-kanban"></i> Mis Proyectos</a>
+                <a href="tareas.php"><i data-lucide="check-square"></i> Mis Tareas</a>
             </nav>
         </aside>
 
@@ -50,14 +50,14 @@ if ($_SESSION["user"]["id_rol"] != 3) {
                     <span class="role-badge" style="background-color: rgba(74, 111, 165, 0.15); color: var(--primary-color);">Consultor</span>
                     <span>María García</span>
                     <div class="avatar" style="background-color: var(--primary-color);">M</div>
-                    <a id="logoutBtn" href="../../index.html" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
+                    <a id="logoutBtn" href="../../index.php" title="Cerrar sesión" style="color: var(--text-muted);"><i data-lucide="log-out" size="18"></i></a>
                 </div>
             </header>
 
             <div class="content-area">
                 <div class="page-header">
                     <div class="page-title">
-                        <div class="breadcrumb"><a href="casos.html" style="color: var(--text-muted); text-decoration: none;"><i data-lucide="arrow-left" size="14"></i> Volver a la lista de casos</a></div>
+                        <div class="breadcrumb"><a href="casos.php" style="color: var(--text-muted); text-decoration: none;"><i data-lucide="arrow-left" size="14"></i> Volver a la lista de casos</a></div>
                         <h1 style="margin-top: 10px;">Reportar Error Encontrado</h1>
                     </div>
                 </div>
@@ -69,7 +69,7 @@ if ($_SESSION["user"]["id_rol"] != 3) {
                         <h3 style="font-size: 16px; margin-top: 5px;">CP-015: Validar generación de factura B</h3>
                     </div>
 
-                    <form action="casos.html" data-redirect="casos.html">
+                    <form action="casos.php" data-redirect="casos.php">
                         <div class="form-group">
                             <label class="form-label" style="font-size: 16px; font-weight: 600;">¿Qué ocurrió? (Título corto)</label>
                             <input type="text" class="form-control" placeholder="Ej. El botón no hace nada al hacer clic" style="font-size: 16px; padding: 12px;" required>
@@ -110,7 +110,7 @@ if ($_SESSION["user"]["id_rol"] != 3) {
 
                         <div class="d-flex gap-2" style="margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;">
                             <button type="submit" class="btn btn-primary" style="font-size: 16px; padding: 12px 24px;"><i data-lucide="send" size="18"></i> Enviar Reporte de Error</button>
-                            <a href="ejecutar.html" class="btn btn-secondary" style="font-size: 16px; padding: 12px 24px;">Cancelar</a>
+                            <a href="ejecutar.php" class="btn btn-secondary" style="font-size: 16px; padding: 12px 24px;">Cancelar</a>
                         </div>
                     </form>
                 </div>
