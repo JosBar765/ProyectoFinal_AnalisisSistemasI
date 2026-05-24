@@ -1,1 +1,1 @@
-const supervisorBase = `${base}/pages/consultor`;
+const consultorBase = `${base}/pages/consultor`;

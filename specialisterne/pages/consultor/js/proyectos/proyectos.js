@@ -1,5 +1,3 @@
-const consultorBase = `${base}/pages/consultor`;
-
 document.addEventListener("DOMContentLoaded", () => {
     obtenerProyectos();
 });
@@ -149,45 +147,31 @@ function renderizarProyectos(proyectos) {
 
             <div class="text-center">
 
-                ${proyecto.estado === "En Pausa"
-                ?
-                `
-                        <a
-                            href="#"
-                            class="btn btn-secondary"
-                            style="
-                                width: 100%;
-                                padding: 12px;
-                                font-size: 16px;
-                            ">
-
-                            Proyecto en Pausa
-
-                        </a>
-                    `
-                :
-                `
-                        <a
-                            href="casos.php?id=${proyecto.id}"
-                            class="btn btn-primary"
-                            style="
-                                width: 100%;
-                                padding: 12px;
-                                font-size: 16px;
-                            ">
-
-                            Ver Casos de Prueba
-
-                            <i
-                                data-lucide="arrow-right"
-                                size="18">
-                            </i>
-
-                        </a>
-                    `
+            ${(() => {
+                if (proyecto.estado === "En Pausa") {
+                    return `
+                <a class="btn btn-secondary" style="width: 100%; padding: 12px; font-size: 16px;">
+                    En Pausa
+                </a>
+            `;
+                } else if (proyecto.estado === "Activo") {
+                    return `
+                <a href="casos.php?id=${proyecto.id}" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 16px;">
+                    Ver Casos de Prueba
+                    <i data-lucide="arrow-right" size="18"></i>
+                </a>
+            `;
+                } else {
+                    return `
+                <a class="btn btn-secondary" style="width: 100%; padding: 12px; font-size: 16px;">
+                    Finalizado
+                </a>
+            `;
+                }
+            })()
             }
 
-            </div>
+            </div >
         `;
 
         container.appendChild(card);

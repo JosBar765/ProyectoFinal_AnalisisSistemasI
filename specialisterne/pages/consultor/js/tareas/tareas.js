@@ -21,7 +21,7 @@ async function obtenerTareas() {
     try {
 
         const response = await fetch(
-            `${base}/pages/consultor/php/tareas/getTareas.php`
+            `${consultorBase}/php/tareas/getTareas.php`
         );
 
         const data = await response.json();
@@ -52,7 +52,7 @@ async function obtenerFiltros() {
     try {
 
         const response = await fetch(
-            `${base}/pages/consultor/php/tareas/getProyectos.php`
+            `${consultorBase}/php/tareas/getProyectos.php`
         );
 
         const data = await response.json();

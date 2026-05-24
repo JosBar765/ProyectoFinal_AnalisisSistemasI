@@ -122,8 +122,8 @@ $user = $_SESSION["user"];
     </div>
 
     <script src="../../js/app.js"></script>
-    <script src="js/proyectos/proyectos.js"></script>
     <script src="js/comun.js"></script>
+    <script src="js/proyectos/proyectos.js"></script>
 
 </body>
 
