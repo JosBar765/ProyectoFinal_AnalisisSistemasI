@@ -234,11 +234,15 @@ async function cargarProyectos() {
                             Ver Detalles
                         </a>
 
+                        ${(() => {
+                    if (proyecto.estado !== "Finalizado") {
+                        return `
                         <button
-                            class="btn btn-danger btnEliminarProyecto"
+                            class="btn btn-secondary btnCambiarEstadoProyecto"
 
                             data-id="${proyecto.id}"
                             data-nombre="${proyecto.nombre}"
+                            data-estado="${proyecto.estado}"
 
                             style="
                                 padding: 0 14px;
@@ -247,11 +251,33 @@ async function cargarProyectos() {
                                 justify-content: center;
                             "
                         >
-                            <i data-lucide="trash-2" size="16"></i>
+                            <i data-lucide="refresh-cw" size="16"></i>
                         </button>
-                    </div>
+                        `;
+                    } else {
+                        return ``;
+                    }
+                })()
+                }
 
-                </div>
+                        <button
+                class="btn btn-danger btnEliminarProyecto"
+
+                data-id="${proyecto.id}"
+                data-nombre="${proyecto.nombre}"
+
+                style="
+                                padding: 0 14px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+            >
+                <i data-lucide="trash-2" size="16"></i>
+            </button>
+                    </div >
+
+                </div >
             `;
 
         });
@@ -288,7 +314,7 @@ document.addEventListener("click", async e => {
 
     const confirmar =
         confirm(
-            `¿Eliminar el proyecto "${nombreProyecto}"?`
+            `¿Eliminar el proyecto "${nombreProyecto}" ? `
         );
 
     if (!confirmar) {
@@ -297,7 +323,7 @@ document.addEventListener("click", async e => {
 
     try {
 
-        const response = await fetch(`${supervisorBase}/php/proyectos/deleteProyecto.php`,
+        const response = await fetch(`${supervisorBase} / php / proyectos / deleteProyecto.php`,
             {
                 method: "POST",
                 headers: {
@@ -331,6 +357,81 @@ document.addEventListener("click", async e => {
 
         showToast(
             "Error al eliminar el proyecto",
+            "error"
+        );
+
+    }
+
+});
+
+document.addEventListener("click", async e => {
+
+    const btnCambiarEstado =
+        e.target.closest(".btnCambiarEstadoProyecto");
+
+    if (!btnCambiarEstado) {
+        return;
+    }
+
+    const idProyecto =
+        btnCambiarEstado.dataset.id;
+
+    const nombreProyecto =
+        btnCambiarEstado.dataset.nombre;
+
+    const estadoActual =
+        btnCambiarEstado.dataset.estado;
+
+    const nuevoEstado =
+        estadoActual === "Activo"
+            ? "En Pausa"
+            : "Activo";
+
+    const confirmar = confirm(
+        `¿Cambiar el estado del proyecto "${nombreProyecto}" a "${nuevoEstado}" ? `
+    );
+
+    if (!confirmar) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `${supervisorBase}/php/proyectos/toggleEstadoProyecto.php`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id_proyecto: idProyecto
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if (!data.success) {
+
+            showToast(data.message, "error");
+            return;
+
+        }
+
+        showToast(
+            "Estado del proyecto actualizado correctamente",
+            "success"
+        );
+
+        await cargarProyectos();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Error al cambiar el estado del proyecto",
             "error"
         );
 
