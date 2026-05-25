@@ -163,7 +163,7 @@ $completados = [];
 foreach ($casos as $caso) {
     $estado = $caso["estado"];
 
-    if ($estado === "Pendiente" || $estado === "En Progreso") {
+    if ($estado === "Pendiente") {
         $pendientes[] = $caso;
     } else {
         $completados[] = $caso;
