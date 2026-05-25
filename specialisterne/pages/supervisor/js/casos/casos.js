@@ -322,6 +322,19 @@ function renderizarCasos(casos) {
                         </button>
 
                         <button
+                            class="btn btn-secondary"
+                            style="padding: 4px 8px;"
+
+                            onclick="
+                                window.location.href=
+                                'caso-reporte.php?id=${caso.id}'
+                            ">
+
+                            <i data-lucide="eye" size="14"></i>
+
+                        </button>
+
+                        <button
                             class="btn btn-danger btnEliminarCasoTabla"
                             style="padding: 4px 8px;"
                             data-id="${caso.id}">
