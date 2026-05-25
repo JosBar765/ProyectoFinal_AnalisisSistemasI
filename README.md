@@ -117,8 +117,3 @@ El sistema busca demostrar la viabilidad de una plataforma centralizada para la 
 - Andrés Ixcajoc 090-23-19115
 - Christopher Leal 9390-23-19975
 
----
-
-## Licencia
-
-Proyecto desarrollado con fines académicos.
