@@ -76,7 +76,7 @@ La base de datos está diseñada para gestionar:
 git clone https://github.com/JosBar765/ProyectoFinal_AnalisisSistemasI.git
 ```
 
-2. Mover el proyecto `specialisterne\` al directorio `htdocs` de XAMPP.
+2. Mover el proyecto `specialisterne/` al directorio `htdocs/` de XAMPP.
 
 3. Crear la base de datos en MySQL.
 
