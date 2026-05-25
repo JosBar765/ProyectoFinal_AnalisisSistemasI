@@ -46,33 +46,6 @@ El sistema fue desarrollado como parte del curso de Análisis de Sistemas I util
 
 ---
 
-## Estructura general del proyecto
-
-```bash
-ProyectoFinal_AnalisisSistemasI/
-│
-├── pages/
-│   ├── admin/
-│   ├── supervisor/
-│   └── consultor/
-│
-├── php/
-│   ├── auth/
-│   ├── proyectos/
-│   ├── casos/
-│   ├── reportes/
-│   └── db.php
-│
-├── assets/
-│   ├── css/
-│   ├── js/
-│   └── img/
-│
-└── database/
-```
-
----
-
 ## Base de datos
 
 La base de datos está diseñada para gestionar:
@@ -103,24 +76,25 @@ La base de datos está diseñada para gestionar:
 git clone https://github.com/JosBar765/ProyectoFinal_AnalisisSistemasI.git
 ```
 
-2. Mover el proyecto al directorio `htdocs` de XAMPP.
+2. Mover el proyecto `specialisterne\` al directorio `htdocs` de XAMPP.
 
 3. Crear la base de datos en MySQL.
 
-4. Importar el script SQL correspondiente.
+4. Importar el script SQL correspondiente: `Specialisterne.sql`.
 
 5. Configurar las credenciales de conexión en:
 
 ```php
-/php/db.php
+/keys.env.example
 ```
+6. Remover la extensión `.example` del archivo `keys.env`
 
-6. Iniciar Apache y MySQL desde XAMPP.
+7. Iniciar Apache y MySQL desde XAMPP.
 
-7. Abrir en el navegador:
+8. Abrir en el navegador:
 
 ```bash
-http://localhost/ProyectoFinal_AnalisisSistemasI
+http://localhost/specialisterne
 ```
 
 ---
@@ -137,26 +111,11 @@ El sistema busca demostrar la viabilidad de una plataforma centralizada para la 
 
 ---
 
-## Estado del proyecto
-
-Proyecto académico en desarrollo 🚧
-
-Actualmente el sistema continúa en fase de mejoras, corrección de errores y ampliación de funcionalidades.
-
----
-
 ## Equipo de desarrollo
 
-- Josué Abraham Barrios Ramírez
-- Equipo de Análisis de Sistemas I
-
----
-
-## Repositorio oficial
-
-Repositorio disponible en GitHub:
-
-[ProyectoFinal_AnalisisSistemasI](https://github.com/JosBar765/ProyectoFinal_AnalisisSistemasI)
+- Josué Barrios 090-23-4777
+- Andrés Ixcajoc 090-23-19115
+- Christopher Leal 9390-23-19975
 
 ---
 
